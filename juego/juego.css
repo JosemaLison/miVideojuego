@@ -16,11 +16,22 @@
   .game-container {
     border: 2px solid #333;
     background-color: #fff;
-    width: 500px;
-    height: 500px;
+    width: 600;
+    height: 400;
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  #score-board {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
   }
   
   canvas {
