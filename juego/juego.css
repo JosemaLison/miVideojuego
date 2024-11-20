@@ -12,7 +12,9 @@
     height: 100vh;
     background-color: #f0f0f0;
   }
-  
+  #botonReinicio {
+    margin-top: 15px;
+  }
   .game-container {
     border: 2px solid #333;
     background-color: #fff;
