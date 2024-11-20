@@ -54,26 +54,41 @@ window.onload = function(){
     
     // Ataque
     function attack() {
-      if (!attacking) {
-        attacking = true;
-        setTimeout(() => attacking = false, 200); // El ataque dura 200ms
-        if (isColliding(player, enemy)) {
-          enemy.health -= 10;
-          score += 10;
-          if (enemy.health <= 0) {
-            resetEnemy();
+        if (!attacking) {
+          attacking = true;
+          setTimeout(() => attacking = false, 200); // El ataque dura 200ms
+          if (isColliding(player, enemy)) {
+            // Mover al enemigo en la dirección opuesta al jugador
+            const dx = enemy.x - player.x; // Dirección en el eje X
+            const dy = enemy.y - player.y; // Dirección en el eje Y
+            
+            const distance = Math.sqrt(dx * dx + dy * dy); // Distancia entre el jugador y el enemigo
+            const moveDistance = 80; // Cuánto retrocede el enemigo
+      
+            // Mover al enemigo en la dirección opuesta
+            enemy.x += (dx / distance) * moveDistance;
+            enemy.y += (dy / distance) * moveDistance;
+
+            enemy.health -= 10;
+      
+            // Si el enemigo llega a una esquina, reiniciar
+            if (enemy.health <= 0) {
+              resetEnemy();
+              score+=100;
+            }
           }
         }
       }
-    }
+      
     
     // Verificar colisión
-    function isColliding(rect1, rect2) {
-      return rect1.x < rect2.x + rect2.width &&
-             rect1.x + rect1.width > rect2.x &&
-             rect1.y < rect2.y + rect2.height &&
-             rect1.y + rect1.height > rect2.y;
-    }
+function isColliding(rect1, rect2) {
+    return rect1.x < rect2.x + rect2.width &&
+           rect1.x + rect1.width > rect2.x &&
+           rect1.y < rect2.y + rect2.height &&
+           rect1.y + rect1.height > rect2.y;
+  }
+  
     
     // Movimiento del enemigo
     function moveEnemy() {
